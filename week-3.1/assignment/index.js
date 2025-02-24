@@ -32,8 +32,7 @@ function verifyUser(username,password){
 
 app.post('/signin',function(req,res){
 
-    const username = req.body.username;
-    const password = req.body.password;
+   const {username,password} = req.body;
 
     if(!verifyUser(username,password)){
         return res.status(404).json({message:"User Not Found"});
