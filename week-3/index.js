@@ -15,6 +15,12 @@ const mainSchema = zod.object(
     }
 )
 
+const inputSchema = zod.object({
+    username:zod.string(),
+    password:zod.string().max(8),
+    email: zod.string().email(),
+});
+
 app.get('/health-checkup',(req,res)=>{
 
     const validation = mainSchema.safeParse({
@@ -47,6 +53,23 @@ app.post('/health-checkup',function(res,req){
     res.json({ success: true, data: kidneys });
 
 
+})
+
+app.post('/login',function(req,res){
+    const input = req.body;
+    const validation = inputSchema.safeParse(input);
+
+    if(!validation.success){
+        return res.status(400).json({message:"Invalid Input Provided"});
+    }
+
+    const {username , password , email} = validation.data;
+
+    if(username !== 'vikas' || password !== 'admin' || email !== 'vikas@gmail.com'){
+        return res.status(400).json({message:"Invalid Credentials"})
+    }
+
+    res.json({success:true,data:input})
 })
 //Global Catch
 app.use(function(err,req,res,next){
