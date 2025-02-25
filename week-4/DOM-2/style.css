@@ -1,0 +1,34 @@
+.cont{
+    max-width: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border: 1px crimson solid;
+    padding: 1rem;
+}
+.cont > button{
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    border: 1px solid rgb(200,200,200);
+    outline: none;
+    transition: all 200ms ease-in-out;
+    
+}
+.cont > button:hover{
+    scale: 1.15;
+    background-color: rgb(221, 171, 78);
+    color: white;
+}
+input{
+    padding: 0.5rem;
+    width: 100%;
+    border: 1px solid rgb(200,200,200);
+    outline: none;
+}
+.todos-ctn{
+    border: 1px solid black;
+    margin-top: 1rem;
+    padding: 1rem;
+    max-width: 880px;
+}
