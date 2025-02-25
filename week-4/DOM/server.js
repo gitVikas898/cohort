@@ -14,5 +14,19 @@ app.get('/sum',function(req,res){
     res.send(sum.toString())
 });
 
+app.get('/intrest',function(req,res){
+    const p = parseFloat(req.query.principal)
+    const r = parseFloat(req.query.rate)
+    const t = parseFloat(req.query.time);
+
+    const si = (p*r*t)/100;
+    const amount = p+si;
+
+    res.json({
+        SI:si.toFixed(),
+        Amount :amount.toFixed(2)
+    });
+})
+
 app.listen(port)
 
