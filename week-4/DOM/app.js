@@ -23,17 +23,32 @@ function validate(input1,input2){
 }
 
 
-button.addEventListener("click",()=>{
-        const validation = validate(input1.value,input2.value);
-        if(Object.keys(validation).length===0){
-            const data = fetch(`http://127.0.0.1:3000/sum?a=${input1.value}&b=${input2.value}`);
-            data.then(function(response){
-                response.text().then(function(ans){
-                    document.getElementById("result").innerHTML = `Sum is ${ans}` 
-                })
+function calculate(){
+    // const validation = validate(input1.value,input2.value);
+    // if(Object.keys(validation).length===0){}
+        const data = fetch(`http://127.0.0.1:3000/sum?a=${input1.value}&b=${input2.value}`);
+        data.then(function(response){
+            response.text().then(function(ans){
+                document.getElementById("result").innerHTML = `Sum is ${ans}` 
             })
-            
-        }
+        })
+        
+}
+
+let timerId;
+
+function debouceCalculate(){
+    clearInterval(timerId);
+    timerId = setTimeout(function(){
+        calculate()
+    },2000)
+}
+
+input1.addEventListener("input",()=>{
+       debouceCalculate()
+})
+input2.addEventListener("input",()=>{
+    debouceCalculate()
 })
 
 button2.addEventListener("click",async()=>{
