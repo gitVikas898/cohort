@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>DOM + Backend</title>
 </head>
 <body>
-    <h1>Todolist + Backend</h1>
-    <div>
-        <input type="text" name="title" id="js-title-inp" title="inp" placeholder="Enter your title">
-        <input type="text" name="desc" id="js-desc-inp" title="desc" placeholder="Enter Description">
-        <button type="button" id="btn">Add</button>
-    </div>
-    <div>
-        <h1>My Todos</h1>
-        <div id="container">
-
+    <section>
+        <h1>Todolist + Backend</h1>
+        <div class="container-div">
+            <input type="text" name="title" id="js-title-inp" title="inp" placeholder="Enter your title">
+            <input type="text" name="desc" id="js-desc-inp" title="desc" placeholder="Enter Description">
+            <button type="button" id="btn">Add</button>
         </div>
-    </div>
+        <div >
+            <h1>My Todos</h1>
+            <div id="container" class="todo-div">
+            </div>
+        </div>
+    </section>
     <script src="./app.js"></script>
 </body>
 </html>
