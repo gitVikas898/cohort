@@ -1,20 +1,19 @@
 {
-  "name": "dom-3",
+  "name": "assignment-mdb",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "cors": "^2.8.5",
-    "dom-3": "file:",
+    "assignment-mdb": "file:",
     "express": "^4.21.2",
+    "mongoose": "^8.10.2",
     "nodemon": "^3.1.9"
   }
 }
