@@ -2,15 +2,48 @@ const express = require("express");
 const { Admin, Course } = require("../db/db");
 const router = express.Router();
 const adminMiddleware = require("../middlewares/admin")
+const zod = require('zod');
+
+const inputSchema = zod.object({
+    username:zod.string(),
+    password:zod.string()
+});
+
+const courseSchema = zod.object({
+    title:zod.string(),
+    description:zod.string(),
+    imageLink :zod.string(),
+    price:zod.number()
+})
 
 router.post('/signup',async function(req,res){
-    const username = req.body.username;
-    const password = req.body.password;
+    const inputValidation = inputSchema.safeParse({
+        username:req.body.username,
+        password:req.body.password
+    })
+
+    if(!inputValidation.success){
+        return res.status(400).json({
+            message:"Invalid input credentials provided"
+        })
+    }
+
+    const findExistingUser = await Admin.findOne({
+        username:inputValidation.data
+    })
+
+    if(findExistingUser){
+        return res.status(400).json(
+            {
+                message:"User already exists try loging in"
+            }
+        )
+    }
 
     //check if user with this username exists ? if not create entry in database
     await Admin.create({
-        username,
-        password
+        username:req.body.username,
+        password:req.body.password
     });
 
     res.status(201).json(
@@ -20,14 +53,25 @@ router.post('/signup',async function(req,res){
 });
 
 router.post('/courses',adminMiddleware,async (req,res)=>{
-    const title = req.body.title;
-    const description = req.body.description;
-    const imageLink = req.body.imageLink;
-    const price = req.body.price;
+
+    const{title,description,imageLink,price} = req.body;
+    
+    const inputValidation = courseSchema.safeParse({
+        title,
+        description,
+        imageLink,
+        price
+    })
+
+    if(!inputValidation.success){
+        return res.status(400).json(
+            {
+                message:"Invalid input provided"
+            }
+        )
+    }
 
     //do some input validation using zod
-
-
   const newCourse =   await Course.create({
         title,
         description,

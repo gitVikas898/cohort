@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btn-class{
+            border: 1px solid rgb(200,200,200);
+            max-width: fit-content;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background-color: aliceblue;
+            cursor: pointer;
+            transition: all 200ms ease-in;
+        }
+        .btn-class:hover{
+            background-color: lightcyan;
+
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section>
+            <h1>Creating React Button Component in Vanila Javascript</h1>
+            <div id="parent">
+                
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let state = {
+            count:0
+        }
+
+        function setState(){
+            state.count++;
+            renderButton();
+        }
+
+        function buttonComponent(state){
+            const button = document.createElement("div");
+            button.innerHTML = `Count : ${state.count}`
+            button.setAttribute("class","btn-class");
+            button.addEventListener("click",setState);
+            return button;
+        }
+
+        function renderButton(){
+            document.getElementById("parent").innerHTML = '';
+            const component = buttonComponent(state);
+            document.getElementById("parent").appendChild(component);
+        }
+        renderButton()
+    </script>
+</body>
+</html>

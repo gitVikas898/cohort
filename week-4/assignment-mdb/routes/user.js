@@ -2,10 +2,36 @@ const express = require("express");
 const { User, Course } = require("../db/db");
 const userMiddleware = require("../middlewares/user");
 const router = express.Router();
+const zod = require('zod')
+
+const inputSchema = zod.object({
+    username:zod.string(),
+    password:zod.string(),
+})
 
 router.post('/signup',async function(req,res){
-    const username = req.body.username;
-    const password = req.body.password;
+    const {username,password} = req.body;
+
+    const inputValidation = inputSchema.safeParse({
+        username,
+        password
+    })
+
+    if(!inputValidation.success){
+        return res.status(400).json({
+            message:"Invalid inputs "
+        })
+    }
+
+    const findUser = await User.findOne({
+        username
+    })
+
+    if(findUser){
+        return res.status(400).json({
+            message:"User already exists , Try Logging in"
+        })
+    }
 
     //check if user with this username exists ? if not create entry in database
     await User.create({
