@@ -1,30 +1,36 @@
-import React, { useMemo,  useState } from 'react'
+import React, { useCallback, useState } from 'react'
 
 const App = () => {
+  const [count ,setCount] = useState(0);
 
-  const [input,setInput] = useState(1);
-  const [count,setCount] = useState(0);
- 
-  const findSum = useMemo(()=>{
-    
-    let n = parseInt(input);
-    let total = 0;
-    for(let i=1;i<n;i++ ){
-      total+=i
-    }
-    console.log("Calculated")
-    return total
-  },[input])
+  // Inefficeint way of doing things here Button Component thinks handle click is a new function everytime because the refrential value is different
+  // const handleClick=()=>{
+  //   setCount(prevCount=>prevCount+1);
+  // }
 
+  // To prevent this renrendring we can use useCallback for memoising the function
 
+  const handleClick = useCallback(()=>{
+    setCount((prevCount)=>prevCount+1);
+  },[])
+  
   return (
     <div>
-        <h1>Component that given n find sum till n</h1>
-        <input type="text" value={input} placeholder='Enter N' onChange={(e)=>setInput(e.target.value)}/>
-        <p>Sum is : {findSum}</p>
-        <button onClick={()=>setCount(count+1)}>Count : {(count)}</button>
+        <h1>{count}</h1>
+        {console.log("parent component rendered")}
+        <Button handleClick={handleClick}/>
     </div>
   )
 }
+
+const Button = React.memo(({handleClick})=>{
+  return(
+    <>  
+        {console.log("Button Compnent Rendered")}
+       <button onClick={handleClick}>Increase</button>
+    </>
+   
+  )
+})
 
 export default App
