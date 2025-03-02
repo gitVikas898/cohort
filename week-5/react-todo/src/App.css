@@ -1,3 +1,9 @@
 h1{
   text-align: center;
 }
+.ctn{
+  padding: 1rem;
+}
+.ctn2{
+  border: 2px solid red;
+}
