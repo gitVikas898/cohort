@@ -14,7 +14,7 @@ const Assignment5 = () => {
     // Incorrect way 
     // 
     
-    let renderCount = useRef(0);
+    let renderCount = useRef(0); // so here useref just remembers the current value and does not trigger render on change 
      
     renderCount.current++
     console.log("Componet re rendered",renderCount)
