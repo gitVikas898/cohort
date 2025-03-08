@@ -12,7 +12,7 @@ const Context = () => {
   </div>;
 };
 const Count = () => {
-
+  console.log("Count Component Rendered")
   return <div>
     <Countrender/>
     <Buttons/>
