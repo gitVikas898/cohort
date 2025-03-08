@@ -6,7 +6,7 @@
 // greet("Vikas","Singh");
 // //type infrence : ts automatically infers what the function will return based on input types
 // //good to still mention the required return type 
-class Employee {
+class Employe {
     constructor(name, age) {
         this.name = name;
         this.age = age;
@@ -15,5 +15,9 @@ class Employee {
         console.log(`${phrase} ${this.name}`);
     }
 }
-const e1 = new Employee("Vikas", 26);
-e1.greet("Good Luck");
+const e1 = new Employe("Vikas", 26);
+const teamLead = {
+    name: "Vikas",
+    startDate: new Date(),
+    department: "Software Developer",
+};

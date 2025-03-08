@@ -60,7 +60,7 @@ interface Person{
     greet(phrase:string):void
 }
 
-class Employee implements Person{
+class Employe implements Person{
     name:string
     age:number
 
@@ -74,5 +74,25 @@ class Employee implements Person{
     }
 }
 
-const e1 = new Employee("Vikas",26);
-e1.greet("Good Luck")
+const e1 = new Employe("Vikas",26);
+// e1.greet("Good Luck")
+
+// Intersections 
+
+type Employee = {
+    name: string,
+    startDate:Date,
+}
+
+type Manager = {
+    name:string,
+    department:string
+}
+
+type TeamLead = Employee & Manager;
+
+const teamLead : TeamLead = {
+    name:"Vikas",
+    startDate: new Date(),
+    department:"Software Developer",
+}
