@@ -1,27 +1,19 @@
 "use strict";
-// write a function that greets a user given their firstname
-function greet(firstname, lastName) {
-    console.log(`Hello ${firstname}, How's it going`);
-}
-greet("Vikas", "Singh");
-//type infrence : ts automatically infers what the function will return based on input types
-//good to still mention the required return type 
-function sum(a, b) {
-    return a + b;
-}
-console.log(sum(100, 200));
-function isLegal(age) {
-    if (age >= 18) {
-        return true;
+// // write a function that greets a user given their firstname
+// function greet(firstname:string,lastName:string){
+//     console.log(`Hello ${firstname}, How's it going`);
+// }
+// greet("Vikas","Singh");
+// //type infrence : ts automatically infers what the function will return based on input types
+// //good to still mention the required return type 
+class Employee {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
     }
-    return false;
+    greet(phrase) {
+        console.log(`${phrase} ${this.name}`);
+    }
 }
-console.log(isLegal(19));
-//create a function that takes anoter function as input and runs it after 1 second
-function delay(fn) {
-    setTimeout(fn, 2000);
-}
-function fn() {
-    console.log("Hi there after Delay");
-}
-delay(fn);
+const e1 = new Employee("Vikas", 26);
+e1.greet("Good Luck");
